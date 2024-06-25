@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            margin: 0;
+        }
+        .container {
+            border-radius: 18px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+            height: 300px;
+        }
+        
+        .post {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .post-image img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+        }
+        
+        .actions {
+            margin-top: 10px;
+        }
+        
+        .comments {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .comment-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .edit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .edit-button:hover {
+            background-color: #45a049;
+        }
+        
+        #b1 {
+            background-image: url('/static/images/pbg.jpg');
+            background-repeat:repeat;
+            background-size: cover;
+            height: 500px;
+        }
+    </style>
+</head>
+<body id="b1">
+    <div class="container">
+        <h1 style="color:white;">Create Your Post</h1>
+        <input type="file" id="imageUpload" accept="image/*">
+        <input type="text" id="imageDescription" style="border:hidden">
+        <div id="postContainer"></div>
+    </div>
+
+    <script>
+        // Get a reference to the input element
+        const textBox = document.getElementById('imageDescription');
+        imageDescription.style.display = 'none';
+
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageSrc = e.target.result;
+                    let description = document.getElementById('imageDescription').value.trim();
+                    // Prompt for description if not provided during upload
+                    if (!description) {
+                        description = prompt('Enter image description:');
+                    }
+                    const postContainer = document.getElementById('postContainer');
+                    const newPost = createPost(imageSrc, description);
+                    postContainer.appendChild(newPost);
+                    // Clear input fields after uploading
+                    document.getElementById('imageUpload').value = '';
+                    document.getElementById('imageDescription').value = '';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Function to create a new post with image and interactions
+        function createPost(imageSrc, description) {
+            const postTemplate = document.createElement('div');
+            postTemplate.classList.add('post');
+
+            const postImage = document.createElement('div');
+            postImage.classList.add('post-image');
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            postImage.appendChild(img);
+            postTemplate.appendChild(postImage);
+
+            if (description) {
+                const descParagraph = document.createElement('p');
+                descParagraph.textContent = description;
+                postTemplate.appendChild(descParagraph);
+            }
+
+            const actions = document.createElement('div');
+            actions.classList.add('actions');
+
+            // Create the like button
+            const likeButton = document.createElement('button');
+            likeButton.textContent = 'Like ';
+            const likeIcon = document.createElement('i');
+            likeIcon.classList.add('fas', 'fa-thumbs-up'); // FontAwesome icon classes
+            likeButton.appendChild(likeIcon);
+            let likeCount = 0;
+            const likeCountDisplay = document.createElement('span');
+            likeCountDisplay.textContent = likeCount;
+            likeCountDisplay.style.marginLeft = '5px';
+            likeButton.appendChild(likeCountDisplay);
+            likeButton.addEventListener('click', function() {
+                likeCount++;
+                likeCountDisplay.textContent = likeCount;
+            });
+            actions.appendChild(likeButton);
+
+            postTemplate.appendChild(actions);
+
+            const comments = document.createElement('div');
+            comments.classList.add('comments');
+            const commentInput = document.createElement('textarea');
+            commentInput.setAttribute('placeholder', 'Add a comment...');
+            comments.appendChild(commentInput);
+            const commentButton = document.createElement('button');
+            commentButton.textContent = 'Add Comment';
+            commentButton.addEventListener('click', function() {
+                const commentList = document.createElement('ul');
+                const commentItem = document.createElement('li');
+                commentItem.textContent = commentInput.value;
+                commentList.appendChild(commentItem);
+                comments.appendChild(commentList);
+                commentInput.value = '';
+            });
+            comments.appendChild(commentButton);
+            postTemplate.appendChild(comments);
+
+            // Create the delete button with FontAwesome trash icon
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i> Delete Post`;
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', function() {
+                postTemplate.remove();
+            });
+            postTemplate.appendChild(deleteButton);
+
+            return postTemplate;
+        }
+    </script>
+</body>
+</html>

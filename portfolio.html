@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .sidebar {
+      width: 2500px;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+    }
+    
+    nav ul li {
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    #u1{
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      font-family: 'Times New Roman', Times, serif;
+      padding: 0;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <nav>
+        <h2>Contact</h2>
+        <ul>
+          <li>Name: John Doe</li>
+          <li>Email: john@example.com</li>
+          <li>Phone: +1234567890</li>
+        </ul>
+        <nav >
+          <ul id="u1">
+            <li><a href="#about">About</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      </nav>
+    </div>
+    <div class="main-content">
+      <h1>About Me</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget nisi ac justo scelerisque bibendum. Sed id ligula eros. Curabitur non sapien velit. Proin scelerisque porta est, et ultricies urna fermentum a. Integer vel ultrices nunc.</p>
+      <h2>Interests</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget nisi ac justo scelerisque bibendum.</p>
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <!-- Add more skills as needed -->
+      </ul>
+      <h2>Achievements</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget nisi ac justo scelerisque bibendum.</p>
+    </div>
+  </div>
+</body>
+</html>
