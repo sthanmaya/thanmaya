@@ -83,11 +83,12 @@ WSGI_APPLICATION = 'thanmaya.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'thanmaya',
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost'
+        'NAME': 'blog_db_8ez6',
+        'USER':'blog_db_8ez6_user',
+        'PASSWORD':'cfKbRzVmN2ARRyd4neuhNxMdck0ppAYc',
+        'HOST':'dpg-cptcot1u0jms738b12o0-a.oregon-postgres.render.com'
     }
+    
 }
 
 
