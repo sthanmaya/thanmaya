@@ -35,9 +35,9 @@ urlpatterns = [
  
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('login/', blog_view.Login, name ='login'),
+    path('Login/', blog_view.Login, name ='Login'),
     path('logout/', auth.LogoutView.as_view(template_name ='index.html'), name ='logout'),
-    path('register/', blog_view.register, name ='register'),
+    path('Register/', blog_view.register, name ='Register'),
     path('slideshow/', blog_view.slideshow, name='slideshow'),
      path('home/', blog_view.home, name='home'),
      path('post/', blog_view.post, name='post'),
