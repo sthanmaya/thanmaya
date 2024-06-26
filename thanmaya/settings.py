@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'thanmaya.urls'
@@ -124,6 +125,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# settings.py
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 
 # Static files (CSS, JavaScript, Images)
