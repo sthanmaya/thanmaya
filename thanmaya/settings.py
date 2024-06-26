@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,7 +84,11 @@ WSGI_APPLICATION = 'thanmaya.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:postgres@localhost:5432/blog',
+        conn_max_age=600
+    ),
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog_db_8ez6',
         'USER':'blog_db_8ez6_user',
@@ -91,8 +96,6 @@ DATABASES = {
         'HOST':'dpg-cptcot1u0jms738b12o0-a.oregon-postgres.render.com'
     }
     
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
